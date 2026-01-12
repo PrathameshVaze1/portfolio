@@ -3,18 +3,19 @@
 
 export const personalInfo = {
   name: "Prathamesh Vaze",
-  title: "Full-Stack Developer",
+  title: "Laravel Backend Developer",
   taglines: [
-    "Laravel Developer",
-    "Full-Stack Developer", 
-    "Open Source Enthusiast",
+    "Laravel Backend Developer",
+    "API Specialist",
+    "Open Source Contributor",
     "Community Builder"
   ],
-  bio: `I'm a passionate <strong>Laravel Developer</strong> who recently transitioned into <strong>Full-Stack Development</strong>. 
-  With a strong foundation in backend development using PHP and Laravel, I've expanded my expertise to include 
-  modern frontend technologies. I love building robust, scalable web applications and contributing to the 
-  developer community. Always eager to learn and share knowledge through code.`,
+  bio: `I'm a <strong>Laravel Backend Developer</strong> with 3+ years of experience building secure, scalable applications and APIs. 
+  I specialize in performance tuning, codebase modernization, and seamless third-party integrations. 
+  Active contributor to Laravel open-source projects and community events like Laracon and Laravel Mumbai. 
+  Familiar with AI-powered development tools and automation workflows, actively exploring applications of AI in backend development and API security.`,
   email: "prathameshvaze@gmail.com",
+  phone: "+91 9403329930",
   location: "India",
   resumeUrl: "#",
   sourceUrl: "#",
@@ -28,51 +29,51 @@ export const socialLinks = [
 ];
 
 export const skills = {
-  backend: ["PHP", "Laravel", "MySQL", "Redis", "REST APIs"],
-  frontend: ["JavaScript", "TypeScript", "React", "Tailwind CSS"],
-  devops: ["Docker", "Git", "CI/CD", "Linux", "AWS", "Nginx"],
-  tools: [ "Pest", "Rector", "Livewire", "Filament", "Inertia.js"],
+  "Languages & Frameworks": ["PHP", "Laravel", "MySQL", "ReactJS"],
+  "AI & Tools": ["ChatGPT", "GitHub Copilot", "OpenAI API", "Claude"],
+  "Development Tools": ["VS Code", "PHPStorm", "Cursor", "Git", "GitHub", "GitLab", "Postman", "Telescope", "Debugbar"],
+  "Database Tools": ["TablePlus", "MySQL Workbench", "phpMyAdmin"],
+  "Deployment": ["Laravel Forge", "GitHub Actions", "Laravel Cloud"],
+  "Cloud/Remote": ["Azure", "DigitalOcean", "AWS", "VPN", "Citrix"],
 };
 
 export const experience = [
   {
     id: 1,
-    role: "Full-Stack Developer",
-    company: "Freelance",
-    type: "Remote",
-    duration: "2024 - Present",
+    role: "PHP - Laravel Developer",
+    company: "Rapsys Technologies Pte Ltd",
+    type: "Full-time",
+    duration: "Oct 2025 - Present",
     description: [
-      "Building full-stack web applications using Laravel and React",
-      "Developing REST APIs and integrating third-party services",
-      "Implementing modern frontend solutions with TypeScript and Tailwind CSS",
-      "Collaborating with clients to deliver scalable, maintainable solutions",
-    ],
+     ],
     current: true,
   },
   {
     id: 2,
-    role: "Laravel Developer",
-    company: "Previous Company",
+    role: "Software Engineer Innovator",
+    company: "12Grids - The CX Technology Company",
     type: "Full-time",
-    duration: "2022 - 2024",
+    duration: "Jan 2024 - Sep 2024",
     description: [
-      "Developed and maintained Laravel applications for enterprise clients",
-      "Implemented testing strategies using PestPHP for robust codebases",
-      "Optimized database queries and application performance",
-      "Mentored junior developers and conducted code reviews",
+      "Led design and strategy for system and database architecture to ensure scalability and maintainability",
+      "Automated 25% of processes using CRON jobs, reducing manual efforts and boosting operational efficiency",
+      "Refactored and optimized codebase for improved performance and reliability",
+      "Oversaw task allocation and sprint planning across multiple ongoing projects",
+      "Leveraged AI-assisted code tools like GitHub Copilot, Cursor to accelerate feature development and improve code quality",
     ],
     current: false,
   },
   {
     id: 3,
-    role: "Junior PHP Developer",
-    company: "First Company",
+    role: "Associate Software Engineer",
+    company: "12Grids - The CX Technology Company",
     type: "Full-time",
-    duration: "2020 - 2022",
+    duration: "Mar 2022 - Dec 2023",
     description: [
-      "Built web applications using PHP and Laravel framework",
-      "Collaborated with design team to implement responsive UIs",
-      "Gained experience with version control and agile methodologies",
+      "Developed and maintained APIs for iOS and Android mobile apps, to support a smooth and responsive user experience",
+      "Integrated middleware and rate limiting to enhance API security and performance",
+      "Spearheaded improvements in deployment pipelines, reducing deployment times by 70%",
+      "Established long-term health and stability of projects through process improvements and documentation",
     ],
     current: false,
   },
@@ -139,19 +140,39 @@ export const projects = [
 export const education = [
   {
     id: 1,
-    degree: "Bachelor of Technology",
-    field: "Computer Science / Information Technology",
-    institution: "Your University",
-    duration: "2016 - 2020",
-    achievements: ["Relevant coursework", "Projects", "Achievements"],
+    degree: "B.Sc. Computer Science",
+    field: "Computer Science",
+    institution: "S. R. M. College Kudal",
+    duration: "Completed",
+    achievements: ["CGPA: 9.83"],
+  },
+  {
+    id: 2,
+    degree: "HSC",
+    field: "Higher Secondary Certificate",
+    institution: "N. A. D. Topiwalla Jr College",
+    duration: "Completed",
+    achievements: ["64%"],
+  },
+  {
+    id: 3,
+    degree: "SSC",
+    field: "Secondary School Certificate",
+    institution: "A. S. D. Topiwalla High School",
+    duration: "Completed",
+    achievements: ["78.6%"],
   },
 ];
 
 export const achievements = [
-  "Open source contributor",
-  "Community meetup organizer",
-  "Technical blog writer",
+  "Active contributor at Laravel Mumbai Community",
+  "Event volunteer at Laracon IN 2025",
+  "Laravel open-source contributor",
 ];
+
+export const languages = ["English", "Hindi", "Marathi"];
+
+export const interests = ["Chess", "Cooking", "Streaming", "Reading"];
 
 export const navLinks = [
   { label: "About", href: "#about" },

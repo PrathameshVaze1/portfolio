@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { personalInfo, socialLinks, navLinks } from "@/data/portfolioData";
-import { Github, Linkedin, Twitter, Mail, FileText, Code, Menu, X } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, FileText, Code, Menu, X, Image } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
   github: <Github className="w-5 h-5" />,
@@ -114,19 +114,26 @@ export function HeroSection() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             {/* Profile Photo */}
-            <div className="relative">
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-dashed border-gray-300 animate-spin-slow p-2">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-coral-400 to-coral-600 flex items-center justify-center">
-                  <span className="text-6xl md:text-7xl text-white font-bold">
-                    {personalInfo.name.charAt(0)}
-                  </span>
-                </div>
+            <div className="relative group">
+              {/* Gradient ring background */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-coral-400 via-coral-500 to-coral-600 p-1 shadow-xl shadow-coral-500/20"></div>
+              
+              {/* Photo container */}
+              <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                <img
+                  src="/prathamesh.jpg"
+                  alt={personalInfo.name}
+                  width={224}
+                  height={224}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
+              
               {/* Decorative corners */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-dashed border-gray-300"></div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-dashed border-gray-300"></div>
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-dashed border-gray-300"></div>
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-dashed border-gray-300"></div>
+              <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-coral-300"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-coral-300"></div>
+              <div className="absolute -bottom-4 -left-4 w-8 h-8 border-b-2 border-l-2 border-coral-300"></div>
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-coral-300"></div>
             </div>
 
             {/* Text Content */}
