@@ -2,7 +2,7 @@
 // This file contains all the content for your portfolio website
 
 export const personalInfo = {
-  name: "Prathamesh",
+  name: "Prathamesh Vaze",
   title: "Full-Stack Developer",
   taglines: [
     "Laravel Developer",
@@ -14,24 +14,24 @@ export const personalInfo = {
   With a strong foundation in backend development using PHP and Laravel, I've expanded my expertise to include 
   modern frontend technologies. I love building robust, scalable web applications and contributing to the 
   developer community. Always eager to learn and share knowledge through code.`,
-  email: "hello@example.com",
+  email: "prathameshvaze@gmail.com",
   location: "India",
   resumeUrl: "#",
   sourceUrl: "#",
 };
 
 export const socialLinks = [
-  { name: "GitHub", url: "https://github.com", icon: "github" },
-  { name: "LinkedIn", url: "https://linkedin.com", icon: "linkedin" },
-  { name: "Twitter/X", url: "https://x.com", icon: "twitter" },
-  { name: "Email", url: "mailto:hello@example.com", icon: "mail" },
+  { name: "GitHub", url: "https://github.com/PrathameshVaze1", icon: "github" },
+  { name: "LinkedIn", url: "https://linkedin.com/in/prathameshvaze", icon: "linkedin" },
+  { name: "Twitter/X", url: "https://x.com/PrathameshVaze", icon: "twitter" },
+  { name: "Email", url: "mailto:prathameshvaze@gmail.com", icon: "mail" },
 ];
 
 export const skills = {
-  backend: ["PHP", "Laravel", "MySQL", "PostgreSQL", "Redis", "REST APIs"],
-  frontend: ["JavaScript", "TypeScript", "React", "Vue.js", "Tailwind CSS", "Alpine.js"],
+  backend: ["PHP", "Laravel", "MySQL", "Redis", "REST APIs"],
+  frontend: ["JavaScript", "TypeScript", "React", "Tailwind CSS"],
   devops: ["Docker", "Git", "CI/CD", "Linux", "AWS", "Nginx"],
-  tools: ["PHPStan", "Pest", "Rector", "Livewire", "Filament", "Inertia.js"],
+  tools: [ "Pest", "Rector", "Livewire", "Filament", "Inertia.js"],
 };
 
 export const experience = [
@@ -117,24 +117,24 @@ export const projects = [
   },
 ];
 
-export const talks = [
-  {
-    id: 1,
-    title: "Getting Started with Laravel Testing",
-    description: "A practical guide to testing in Laravel using PestPHP. Learn how to write expressive tests and build robust applications.",
-    locations: ["Local Meetup"],
-    githubUrl: "#",
-    videoUrl: null,
-  },
-  {
-    id: 2,
-    title: "Modern Laravel Development",
-    description: "Exploring modern tools and practices in Laravel development including Livewire, Alpine.js, and Tailwind CSS.",
-    locations: ["Tech Conference 2024"],
-    githubUrl: "#",
-    videoUrl: "#",
-  },
-];
+// export const talks = [
+//   {
+//     id: 1,
+//     title: "Getting Started with Laravel Testing",
+//     description: "A practical guide to testing in Laravel using PestPHP. Learn how to write expressive tests and build robust applications.",
+//     locations: ["Local Meetup"],
+//     githubUrl: "#",
+//     videoUrl: null,
+//   },
+//   {
+//     id: 2,
+//     title: "Modern Laravel Development",
+//     description: "Exploring modern tools and practices in Laravel development including Livewire, Alpine.js, and Tailwind CSS.",
+//     locations: ["Tech Conference 2024"],
+//     githubUrl: "#",
+//     videoUrl: "#",
+//   },
+// ];
 
 export const education = [
   {
@@ -158,7 +158,7 @@ export const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Talks", href: "#talks" },
+//   { label: "Talks", href: "#talks" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
