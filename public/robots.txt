@@ -1,3 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://prathamesh-vaze.vercel.app/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1

@@ -6,3 +6,4 @@ export { ProjectsSection } from "./ProjectsSection";
 // export { TalksSection } from "./TalksSection";
 export { EducationSection } from "./EducationSection";
 export { ContactSection } from "./ContactSection";
+export * from "./Header";

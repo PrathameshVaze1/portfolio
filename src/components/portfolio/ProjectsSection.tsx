@@ -1,84 +1,72 @@
 import { projects } from "@/data/portfolioData";
-import { Github, ExternalLink, Folder } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 px-6 bg-gray-50/50 border-t border-dashed border-gray-200">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-sm font-semibold text-coral-500 tracking-widest uppercase mb-8">
-          Projects
+    <section id="projects" className="py-8">
+      <div className="flex items-center justify-between mb-8 px-2">
+        <h2 className="text-3xl font-bold font-serif text-gray-900">
+          My Projects
         </h2>
+        {/* Optional: 'View All' link could go here */}
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            >
-              {/* Project Image / Placeholder */}
-              <div className="h-40 bg-gradient-to-br from-gray-100 to-gray-50 flex items-center justify-center border-b border-gray-100">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <Folder className="w-12 h-12 text-gray-300 group-hover:text-coral-300 transition-colors" />
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="font-semibold text-gray-900 group-hover:text-coral-500 transition-colors">
-                    {project.title}
-                  </h3>
-                  <div className="flex gap-2 shrink-0">
+      <div className="grid md:grid-cols-2 gap-6">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            className="group relative bg-gray-900 rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+          >
+            {/* Dark Card Content */}
+            <div className="p-8 h-full flex flex-col min-h-[320px] relative z-10">
+              <div className="flex justify-between items-start mb-6">
+                 {/* Tech Badge */}
+                 <div className="flex flex-wrap gap-2">
+                   {project.techStack.slice(0, 3).map(tech => (
+                     <span key={tech} className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium text-white/90 border border-white/10">
+                       {tech}
+                     </span>
+                   ))}
+                 </div>
+                 
+                 {/* Links */}
+                 <div className="flex gap-3">
                     {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors"
-                        title="View Source"
-                      >
-                        <Github className="w-4 h-4" />
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white text-white hover:text-black transition-all">
+                        <Github className="w-5 h-5" />
                       </a>
                     )}
                     {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 text-gray-400 hover:text-coral-500 transition-colors"
-                        title="View Live"
-                      >
-                        <ExternalLink className="w-4 h-4" />
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white text-white hover:text-black transition-all">
+                        <ExternalLink className="w-5 h-5" />
                       </a>
                     )}
-                  </div>
-                </div>
+                 </div>
+              </div>
 
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+              <div className="mt-auto">
+                <h3 className="text-3xl font-bold text-white mb-3 leading-tight group-hover:text-gray-200 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 line-clamp-3 text-sm leading-relaxed">
                   {project.description}
                 </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
               </div>
+              
+              {/* Subtle hover effect overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
             </div>
-          ))}
-        </div>
+            
+            {/* Background Image / Decoration - Low opacity */}
+             <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
+               {project.image ? (
+                 <img src={project.image} alt={project.title} className="w-full h-full object-cover grayscale" />
+               ) : (
+                 <div className="w-full h-full bg-gradient-to-br from-gray-800 to-black pattern-grid-lg" />
+               )}
+             </div>
+          </div>
+        ))}
       </div>
     </section>
   );

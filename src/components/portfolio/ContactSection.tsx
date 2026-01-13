@@ -76,7 +76,7 @@ function ContactForm() {
                 className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
                   field.state.meta.errors.length
                     ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-2 focus:ring-coral-500 focus:border-transparent'
+                    : 'border-gray-200 focus:ring-2 focus:ring-gray-900 focus:border-transparent'
                 }`}
                 placeholder="Your name"
               />
@@ -113,7 +113,7 @@ function ContactForm() {
                 className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
                   field.state.meta.errors.length
                     ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-2 focus:ring-coral-500 focus:border-transparent'
+                    : 'border-gray-200 focus:ring-2 focus:ring-gray-900 focus:border-transparent'
                 }`}
                 placeholder="your@email.com"
               />
@@ -151,7 +151,7 @@ function ContactForm() {
                 className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all resize-none ${
                   field.state.meta.errors.length
                     ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-2 focus:ring-coral-500 focus:border-transparent'
+                    : 'border-gray-200 focus:ring-2 focus:ring-gray-900 focus:border-transparent'
                 }`}
                 placeholder="Your message..."
               />
@@ -173,8 +173,8 @@ function ContactForm() {
                 disabled={!canSubmit || isSubmitting}
                 className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-colors shadow-lg ${
                   !canSubmit || isSubmitting
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed shadow-none'
-                    : 'bg-coral-500 hover:bg-coral-600 text-white shadow-coral-500/30'
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                    : 'bg-gray-900 hover:bg-black text-white hover:shadow-xl'
                 }`}
               >
                 {isSubmitting ? (
@@ -206,65 +206,70 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-20 px-6 border-t border-dashed border-gray-200">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-sm font-semibold text-coral-500 tracking-widest uppercase mb-2">
-          Get In Touch
-        </h2>
-        <p className="text-gray-500 mb-12">
-          Have a project in mind or want to chat? Feel free to reach out!
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+    <section id="contact" className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100/50">
+      <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+        {/* Left Side: Info & Socials */}
+        <div className="space-y-8">
           <div>
-            <h3 className="font-semibold text-gray-900 mb-6">Connect With Me</h3>
-            
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 bg-white rounded-xl border border-gray-100 hover:border-coral-300 hover:shadow-md transition-all group"
-                >
-                  <div className="text-gray-400 group-hover:text-coral-500 transition-colors">
-                    {iconMap[link.icon]}
-                  </div>
-                  <span className="text-gray-700 font-medium">{link.name}</span>
-                </a>
-              ))}
-            </div>
-
-            <div className="text-sm text-gray-500">
-              <p className="mb-2">
-                📍 Based in <strong>{personalInfo.location}</strong>
-              </p>
-              <p>
-                📧 <a href={`mailto:${personalInfo.email}`} className="text-coral-500 hover:underline">{personalInfo.email}</a>
-              </p>
-            </div>
+            <h2 className="text-4xl font-bold font-serif text-gray-900 mb-4">
+              Get In Touch
+            </h2>
+            <p className="text-xl text-gray-500 leading-relaxed">
+              Have a project in mind or just want to explore potential collaborations? 
+              <br />
+              I'm all ears!
+            </p>
           </div>
 
-          {/* Quick Contact Form */}
-          <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-            <h3 className="font-semibold text-gray-900 mb-6">Send a Message</h3>
-            <ContactForm />
+          <div className="space-y-6">
+             <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                <h3 className="font-bold text-gray-900 mb-4">Connect With Me</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {socialLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-black hover:shadow-md transition-all group"
+                    >
+                      <div className="text-gray-400 group-hover:text-black transition-colors">
+                        {iconMap[link.icon]}
+                      </div>
+                      <span className="text-gray-700 font-medium text-sm">{link.name}</span>
+                    </a>
+                  ))}
+                </div>
+             </div>
+
+             <div className="pl-2 space-y-2 text-gray-600">
+               <p className="flex items-center gap-3">
+                 <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">📍</span>
+                 {personalInfo.location}
+               </p>
+               <p className="flex items-center gap-3">
+                 <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">📧</span>
+                 <a href={`mailto:${personalInfo.email}`} className="hover:text-black hover:underline underline-offset-4 transition-all">
+                   {personalInfo.email}
+                 </a>
+               </p>
+             </div>
           </div>
+        </div>
+
+        {/* Right Side: Form */}
+        <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+           <div className="mb-6 flex items-center justify-between">
+             <h3 className="font-bold text-xl text-gray-900">Send a Message</h3>
+             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" title="Online"></div>
+           </div>
+           <ContactForm />
         </div>
       </div>
-
-      {/* Footer */}
-      <div className="max-w-4xl mx-auto mt-20 pt-8 border-t border-gray-100">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-          <p>
-            © {new Date().getFullYear()} {personalInfo.name}. Built with ❤️ and React.
-          </p>
-          <p className="font-mono">
-            // Open to new opportunities
-          </p>
-        </div>
+      
+      {/* Minimal Footer */}
+      <div className="mt-20 pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+         <p>© {new Date().getFullYear()} {personalInfo.name}.</p>
       </div>
     </section>
   );

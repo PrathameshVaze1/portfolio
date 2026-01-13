@@ -2,49 +2,32 @@ import { personalInfo } from "@/data/portfolioData";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 px-6 border-t border-dashed border-gray-200">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-sm font-semibold text-coral-500 tracking-widest uppercase mb-8">
-          About Me
-        </h2>
+    <section id="about" className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100/50">
+      <div className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="flex-1">
+          <h2 className="text-3xl font-bold font-serif text-gray-900 mb-6">
+            My Story
+          </h2>
+          <div 
+            className="text-lg text-gray-600 leading-relaxed space-y-4"
+            dangerouslySetInnerHTML={{ __html: personalInfo.bio }}
+          />
+        </div>
         
-        <div className="grid md:grid-cols-3 gap-12 items-start">
-          {/* Bio Text */}
-          <div className="md:col-span-2">
-            <p 
-              className="text-lg text-gray-700 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: personalInfo.bio }}
-            />
-            
-            {/* Highlights */}
-            <div className="mt-8 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg">
-                <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                <span className="text-sm text-gray-600">Available for work</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg">
-                <span className="text-sm text-gray-600">📍 {personalInfo.location}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Decorative Element */}
-          <div className="hidden md:block">
-            <div className="relative">
-              <div className="w-full aspect-square rounded-2xl bg-gradient-to-br from-gray-100 to-gray-50 border border-gray-200 p-6 flex flex-col justify-center items-center">
-                <div className="text-4xl mb-3">💻</div>
-                <p className="text-sm text-gray-500 text-center">
-                  Crafting digital experiences with passion
-                </p>
-              </div>
-              {/* Decorative dots */}
-              <div className="absolute -top-2 -right-2 grid grid-cols-3 gap-1">
-                {[...Array(9)].map((_, i) => (
-                  <div key={i} className="w-1.5 h-1.5 rounded-full bg-coral-200"></div>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Right side stats or highlights */}
+        <div className="w-full md:w-1/3 space-y-4">
+           <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
+             <h3 className="font-serif text-xl font-bold text-gray-900 mb-2">Location</h3>
+             <p className="text-gray-600">📍 {personalInfo.location}</p>
+           </div>
+           
+           <div className="p-6 bg-gray-900 text-white rounded-3xl border border-gray-800">
+             <h3 className="font-serif text-xl font-bold mb-2">Status</h3>
+             <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <span className="text-gray-300">Available for work</span>
+             </div>
+           </div>
         </div>
       </div>
     </section>

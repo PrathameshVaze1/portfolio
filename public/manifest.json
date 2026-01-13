@@ -1,6 +1,7 @@
 {
-  "short_name": "TanStack App",
-  "name": "Create TanStack App Sample",
+  "short_name": "Prathamesh Vaze",
+  "name": "Prathamesh Vaze - Laravel Developer Portfolio",
+  "description": "Professional Laravel Backend Developer specializing in API development, server migration, and full-stack applications.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +19,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["developer", "portfolio", "technology"]
 }
