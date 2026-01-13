@@ -17,8 +17,8 @@ export const personalInfo = {
   email: "prathameshvaze@gmail.com",
   phone: "+91 9403329930",
   location: "India",
-  resumeUrl: "#",
-  sourceUrl: "#",
+  resumeUrl: "https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/docs/Prathamesh%20Vaze%20Resume.pdf",
+  sourceUrl: "https://github.com/PrathameshVaze1/portfolio",
 };
 
 export const socialLinks = [
@@ -82,65 +82,19 @@ export const experience = [
 export const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "UPL",
     description: "A full-featured e-commerce platform built with Laravel and React, featuring payment integration, inventory management, and real-time notifications.",
     image: null,
-    techStack: ["Laravel", "React", "MySQL", "Stripe", "Redis"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    id: 2,
-    title: "Task Management System",
-    description: "A collaborative task management application with real-time updates, team features, and advanced filtering capabilities.",
-    image: null,
-    techStack: ["Laravel", "Livewire", "Alpine.js", "PostgreSQL"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    id: 3,
-    title: "Blog Platform",
-    description: "A modern blogging platform with markdown support, SEO optimization, and a beautiful admin panel built with Filament.",
-    image: null,
-    techStack: ["Laravel", "Filament", "Tailwind CSS", "SQLite"],
-    liveUrl: null,
-    githubUrl: "#",
-  },
-  {
-    id: 4,
-    title: "API Starter Kit",
-    description: "An open-source Laravel API boilerplate with authentication, rate limiting, and comprehensive documentation.",
-    image: null,
-    techStack: ["Laravel", "Sanctum", "PHPStan", "Pest"],
-    liveUrl: null,
+    techStack: ["Laravel", "Bootstrap", "MySQL", "Server Management","AWS", "Azure"],
+    liveUrl: "https://upl-ltd.com",
     githubUrl: "#",
   },
 ];
 
-// export const talks = [
-//   {
-//     id: 1,
-//     title: "Getting Started with Laravel Testing",
-//     description: "A practical guide to testing in Laravel using PestPHP. Learn how to write expressive tests and build robust applications.",
-//     locations: ["Local Meetup"],
-//     githubUrl: "#",
-//     videoUrl: null,
-//   },
-//   {
-//     id: 2,
-//     title: "Modern Laravel Development",
-//     description: "Exploring modern tools and practices in Laravel development including Livewire, Alpine.js, and Tailwind CSS.",
-//     locations: ["Tech Conference 2024"],
-//     githubUrl: "#",
-//     videoUrl: "#",
-//   },
-// ];
-
 export const education = [
   {
     id: 1,
-    degree: "B.Sc. Computer Science",
+    degree: "Bachelor of Science",
     field: "Computer Science",
     institution: "S. R. M. College Kudal",
     duration: "Completed",
@@ -172,14 +126,13 @@ export const achievements = [
 
 export const languages = ["English", "Hindi", "Marathi"];
 
-export const interests = ["Chess", "Cooking", "Streaming", "Reading"];
+export const interests = ["Chess", "Cooking", "Reading"];
 
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-//   { label: "Talks", href: "#talks" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];

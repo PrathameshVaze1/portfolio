@@ -5,7 +5,6 @@ import {
   SkillsSection,
   ExperienceSection,
   ProjectsSection,
-  TalksSection,
   EducationSection,
   ContactSection,
 } from '@/components/portfolio'
@@ -20,7 +19,6 @@ function Portfolio() {
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />
-      {/* <TalksSection /> */}
       <EducationSection />
       <ContactSection />
     </main>
