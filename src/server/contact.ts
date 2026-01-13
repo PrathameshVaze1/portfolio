@@ -9,8 +9,18 @@ const contactSchema = z.object({
 })
 
 export const submitContactForm = createServerFn({ method: "POST" })
-  .validator((data: unknown) => contactSchema.parse(data))
   .handler(async ({ data }) => {
+    // Validate input data
+    let validatedData
+    try {
+      validatedData = contactSchema.parse(data)
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        throw new Error(error.errors.map(e => e.message).join(', '))
+      }
+      throw error
+    }
+    
     // 1. Verify Environment Variables
     const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM } = process.env
     
@@ -35,16 +45,15 @@ export const submitContactForm = createServerFn({ method: "POST" })
       await transporter.sendMail({
         from: SMTP_FROM || SMTP_USER, // Use configured FROM or default to USER
         to: SMTP_USER, // Send to yourself
-        replyTo: data.email, // Allow replying to the sender
-        subject: `New Portfolio Contact from ${data.name}`,
-        text: `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`,
+        replyTo: validatedData.email, // Allow replying to the sender
+        subject: `New Portfolio Contact from ${validatedData.name}`,
+        text: `Name: ${validatedData.name}\nEmail: ${validatedData.email}\n\nMessage:\n${validatedData.message}`,
         html: `
           <h3>New Contact Form Submission</h3>
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <br/>
+          <p><strong>Name:</strong> ${validatedData.name}</p>
+          <p><strong>Email:</strong> ${validatedData.email}</p>
           <p><strong>Message:</strong></p>
-          <p>${data.message.replace(/\n/g, '<br>')}</p>
+          <p>${validatedData.message.replace(/\n/g, '<br>')}</p>
         `,
       })
 
