@@ -10,7 +10,7 @@ import appCss from '../styles.css?url'
 // Get the base URL - update this with your actual domain
 const baseUrl = typeof window !== 'undefined' 
   ? window.location.origin 
-  : 'https://prathamesh-vaze.vercel.app/' // Update with your actual domain
+  : 'https://prathamesh-vaze.vercel.app' // Update with your actual domain
 
 const siteUrl = baseUrl
 const siteName = 'Prathamesh Vaze - Laravel Developer'
