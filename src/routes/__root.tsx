@@ -8,10 +8,17 @@ import { personalInfo, socialLinks, projects } from '../data/portfolioData'
 import appCss from '../styles.css?url'
 
 // Get the base URL - update this with your actual domain
-const baseUrl = typeof window !== 'undefined' 
-  ? window.location.origin 
-  : 'https://prathamesh-vaze.vercel.app' // Update with your actual domain
+// Use a constant for SSR compatibility
+const DEFAULT_BASE_URL = 'https://prathamesh-vaze.vercel.app'
 
+function getBaseUrl(): string {
+  if (typeof window !== 'undefined') {
+    return window.location.origin
+  }
+  return DEFAULT_BASE_URL
+}
+
+const baseUrl = getBaseUrl()
 const siteUrl = baseUrl
 const siteName = 'Prathamesh Vaze - Laravel Developer'
 const siteDescription = 'Professional Laravel Backend Developer specializing in API development, server migration, and full-stack applications. 3+ years of experience building scalable web solutions. Available for freelance Laravel projects.'
@@ -81,7 +88,7 @@ export const Route = createRootRoute({
       },
       {
         property: 'og:image',
-        content: `${siteUrl}/prathamesh.jpg`,
+        content: 'https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/prathamesh.jpg',
       },
       {
         property: 'og:image:width',
@@ -122,7 +129,7 @@ export const Route = createRootRoute({
       },
       {
         name: 'twitter:image',
-        content: `${siteUrl}/prathamesh.jpg`,
+        content: 'https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/prathamesh.jpg',
       },
       {
         name: 'twitter:image:alt',
@@ -151,6 +158,36 @@ export const Route = createRootRoute({
       },
     ],
     links: [
+      // Preconnect to Google Fonts for faster font loading
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous',
+      },
+      // Preload Google Fonts CSS for async loading
+      {
+        rel: 'preload',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap',
+        as: 'style',
+      },
+      // Load Google Fonts asynchronously
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap',
+        media: 'print',
+        onLoad: "this.media='all'",
+      },
+      // Preload main CSS for faster rendering
+      {
+        rel: 'preload',
+        href: appCss,
+        as: 'style',
+      },
+      // Load main CSS
       {
         rel: 'stylesheet',
         href: appCss,
@@ -161,7 +198,7 @@ export const Route = createRootRoute({
       },
       {
         rel: 'icon',
-        href: '/favicon.ico',
+        href: '/favicon.png',
       },
       {
         rel: 'apple-touch-icon',
@@ -191,7 +228,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       '@type': 'PostalAddress',
       addressCountry: personalInfo.location,
     },
-    image: `${baseUrl}/prathamesh.jpg`,
+    image: 'https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/prathamesh.jpg',
     url: baseUrl,
     sameAs: socialLinks.map(link => link.url),
     knowsAbout: ['Laravel', 'PHP', 'API Development', 'Backend Development', 'Server Migration', 'Website Migration', 'MySQL', 'ReactJS'],
@@ -246,26 +283,36 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   }
 
   // Projects structured data
-  const projectsSchema = projects.map(project => ({
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: project.title,
-    description: project.description,
-    applicationCategory: 'WebApplication',
-    operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    creator: {
-      '@type': 'Person',
-      name: personalInfo.name,
-    },
-    url: project.liveUrl || `${baseUrl}/#projects`,
-    codeRepository: project.githubUrl !== '#' ? project.githubUrl : undefined,
-    programmingLanguage: project.techStack,
-  }))
+  const projectsSchema = projects
+    .filter(project => project.title && project.description)
+    .map(project => {
+      const schema: Record<string, unknown> = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: project.title,
+        description: project.description,
+        applicationCategory: 'WebApplication',
+        operatingSystem: 'Web',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        creator: {
+          '@type': 'Person',
+          name: personalInfo.name,
+        },
+        url: project.liveUrl || `${baseUrl}/#projects`,
+        programmingLanguage: project.techStack,
+      }
+      
+      // Only add codeRepository if it's a valid URL
+      if (project.githubUrl && project.githubUrl !== '#') {
+        schema.codeRepository = project.githubUrl
+      }
+      
+      return schema
+    })
 
   return (
     <html lang="en">
@@ -285,13 +332,20 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         {/* Projects Structured Data */}
-        {projectsSchema.map((projectSchema, index) => (
-          <script
-            key={index}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
-          />
-        ))}
+        {projectsSchema.map((projectSchema, index) => {
+          try {
+            return (
+              <script
+                key={index}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+              />
+            )
+          } catch (error) {
+            console.error('Error generating project schema:', error)
+            return null
+          }
+        })}
       </head>
       <body>
         {/* <Header /> */}
