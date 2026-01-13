@@ -168,26 +168,7 @@ export const Route = createRootRoute({
         href: 'https://fonts.gstatic.com',
         crossOrigin: 'anonymous',
       },
-      // Preload Google Fonts CSS for async loading
-      {
-        rel: 'preload',
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap',
-        as: 'style',
-      },
-      // Load Google Fonts asynchronously
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap',
-        media: 'print',
-        onLoad: "this.media='all'",
-      },
-      // Preload main CSS for faster rendering
-      {
-        rel: 'preload',
-        href: appCss,
-        as: 'style',
-      },
-      // Load main CSS
+      // Load main CSS (needs to be synchronous for proper rendering)
       {
         rel: 'stylesheet',
         href: appCss,
@@ -348,6 +329,21 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         })}
       </head>
       <body>
+        {/* Load Google Fonts asynchronously to avoid blocking render */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap';
+                link.media = 'print';
+                link.onload = function() { this.media = 'all'; };
+                document.head.appendChild(link);
+              })();
+            `,
+          }}
+        />
         {/* <Header /> */}
         {children}
         <TanStackDevtools
