@@ -45,6 +45,10 @@ export const experience = [
     type: "Full-time",
     duration: "Oct 2025 - Present",
     description: [
+      "Worked with internal stakeholders to develop a Job Portal for the company",
+      "Worked on internal tools to manage the company's operations and resources",
+      // "Worked on the company's website to improve the user experience and SEO",
+      "Introduced AI Workflows to automate the company's operations and improve the efficiency of the team",
      ],
     current: true,
   },

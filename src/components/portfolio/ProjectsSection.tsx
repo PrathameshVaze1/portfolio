@@ -15,18 +15,11 @@ export function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-8">
-      <div className="flex items-center justify-between mb-8 px-2">
+    <section id="projects" className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30">
+      <div className="flex items-center justify-between mb-8">
         <h2 className="text-3xl font-bold font-serif text-gray-900">
           My Projects
         </h2>
-        <button
-          onClick={scrollRight}
-          className="p-3 bg-red-700 hover:bg-red-800 text-white rounded-full transition-all shadow-lg hover:shadow-xl"
-          aria-label="Scroll right"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
       </div>
 
       <div 
@@ -37,11 +30,11 @@ export function ProjectsSection() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="group relative bg-gradient-to-br from-red-900 via-red-800 to-black rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex-shrink-0"
+            className="group relative bg-white rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex-shrink-0 border border-gray-100"
             style={{ width: '400px', minWidth: '400px' }}
           >
             {/* Project Image */}
-            <div className="relative h-48 overflow-hidden">
+            <div className="relative h-48 overflow-hidden rounded-t-[2rem]">
               {project.image ? (
                 <img 
                   src={project.image} 
@@ -49,7 +42,7 @@ export function ProjectsSection() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                 />
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-red-900 via-red-800 to-black" />
+                <div className="w-full h-full bg-gradient-to-br from-red-50 to-red-100" />
               )}
               {/* External Link Icon - Top Right */}
               {project.liveUrl && (
@@ -57,7 +50,7 @@ export function ProjectsSection() {
                   href={project.liveUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="absolute top-4 right-4 p-2 bg-red-700/80 hover:bg-red-600 rounded-lg text-white transition-all backdrop-blur-sm"
+                  className="absolute top-4 right-4 p-2 bg-red-700 hover:bg-red-800 rounded-lg text-white transition-all shadow-md"
                 >
                   <ExternalLink className="w-5 h-5" />
                 </a>
@@ -67,10 +60,10 @@ export function ProjectsSection() {
             {/* Card Content */}
             <div className="p-6 flex flex-col h-full min-h-[280px]">
               <div className="flex-1 mb-4">
-                <h3 className="text-2xl font-bold text-white mb-2 leading-tight group-hover:text-red-200 transition-colors">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-red-700 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
+                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
               </div>
