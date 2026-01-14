@@ -15,7 +15,7 @@ export function ProjectsSection() {
 
       <div 
         ref={scrollContainerRef}
-        className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth snap-x snap-mandatory -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0"
+        className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-x-visible scrollbar-hide pb-4 scroll-smooth snap-x snap-mandatory md:snap-none -mx-4 sm:-mx-6 md:mx-0 px-4 sm:px-6 md:px-0"
         style={{ 
           scrollbarWidth: 'none', 
           msOverflowStyle: 'none',
@@ -25,12 +25,7 @@ export function ProjectsSection() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="group relative bg-white rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex-shrink-0 border border-gray-100 snap-center"
-            style={{ 
-              width: 'calc(100vw - 4rem)',
-              minWidth: 'calc(100vw - 4rem)',
-              maxWidth: '400px'
-            }}
+            className="group relative bg-white rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex-shrink-0 md:flex-shrink border border-gray-100 snap-center w-[calc(100vw-4rem)] sm:w-[calc(100vw-6rem)] md:w-full max-w-full"
           >
             {/* Project Image */}
             <div className="relative h-40 sm:h-48 overflow-hidden rounded-t-[2rem]">
