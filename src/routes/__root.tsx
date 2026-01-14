@@ -168,6 +168,25 @@ export const Route = createRootRoute({
         href: 'https://fonts.gstatic.com',
         crossOrigin: 'anonymous',
       },
+      // Preconnect to R2 CDN for image loading
+      {
+        rel: 'preconnect',
+        href: 'https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev',
+        crossOrigin: 'anonymous',
+      },
+      // DNS prefetch for external resources
+      {
+        rel: 'dns-prefetch',
+        href: 'https://fonts.googleapis.com',
+      },
+      {
+        rel: 'dns-prefetch',
+        href: 'https://fonts.gstatic.com',
+      },
+      {
+        rel: 'dns-prefetch',
+        href: 'https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev',
+      },
       // Load main CSS (needs to be synchronous for proper rendering)
       {
         rel: 'stylesheet',

@@ -16,7 +16,7 @@ export function Header() {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <a href="#hero" className="text-2xl font-bold font-serif tracking-tight text-gray-900 hover:text-black transition-colors">
+        <a href="#hero" className="text-xl sm:text-2xl font-bold font-serif tracking-tight text-gray-900 hover:text-black transition-colors">
           {personalInfo.name.split(" ")[0]}
         </a>
 

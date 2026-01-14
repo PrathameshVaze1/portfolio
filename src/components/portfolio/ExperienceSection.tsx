@@ -4,7 +4,7 @@ import { Briefcase } from "lucide-react";
 export function ExperienceSection() {
   return (
     <section id="experience" className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30">
-      <h2 className="text-3xl font-bold font-serif text-gray-900 mb-8">
+      <h2 className="text-2xl sm:text-3xl font-bold font-serif text-gray-900 mb-6 md:mb-8">
         Work Experience
       </h2>
 
@@ -21,22 +21,22 @@ export function ExperienceSection() {
 
              <div className="flex flex-col sm:flex-row gap-4 sm:items-start justify-between mb-4">
                 <div>
-                   <h3 className="text-xl font-bold text-gray-900">{job.role}</h3>
-                   <div className="flex items-center gap-2 text-gray-600 mt-1">
-                     <Briefcase className="w-4 h-4 text-red-600" />
-                     <span className="font-medium">{job.company}</span>
-                     <span>•</span>
-                     <span className="text-sm bg-red-50/50 px-2 py-0.5 rounded text-red-700 border border-red-100/50">{job.type}</span>
+                   <h3 className="text-lg md:text-xl font-bold text-gray-900">{job.role}</h3>
+                   <div className="flex flex-wrap items-center gap-2 text-gray-600 mt-1">
+                     <Briefcase className="w-4 h-4 text-red-600 shrink-0" />
+                     <span className="font-medium text-sm md:text-base">{job.company}</span>
+                     <span className="hidden sm:inline">•</span>
+                     <span className="text-xs md:text-sm bg-red-50/50 px-2 py-0.5 rounded text-red-700 border border-red-100/50">{job.type}</span>
                    </div>
                 </div>
-                <div className="text-sm font-medium text-red-700 whitespace-nowrap bg-red-50/50 px-3 py-1 rounded-full w-fit border border-red-100/50">
+                <div className="text-xs md:text-sm font-medium text-red-700 whitespace-nowrap bg-red-50/50 px-3 py-1 rounded-full w-fit border border-red-100/50">
                    {job.duration}
                 </div>
              </div>
 
-             <ul className="space-y-3">
+             <ul className="space-y-2 md:space-y-3">
                {job.description.map((point, i) => (
-                 <li key={i} className="text-gray-600 leading-relaxed flex items-start gap-3">
+                 <li key={i} className="text-sm md:text-base text-gray-600 leading-relaxed flex items-start gap-3">
                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-red-400 shrink-0"></span>
                    {point}
                  </li>

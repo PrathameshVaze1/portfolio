@@ -44,6 +44,10 @@ export function HeroSection() {
               src="https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/prathamesh.jpg"
               alt={personalInfo.name}
               className="w-full h-full object-cover object-top transition-all duration-700"
+              width={320}
+              height={320}
+              fetchPriority="high"
+              decoding="async"
             />
           </div>
           {/* Simple decoration */}
@@ -51,17 +55,17 @@ export function HeroSection() {
         </div>
 
         {/* Text Content */}
-        <div className="flex-1 text-center lg:text-left space-y-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-gray-900 leading-tight">
+        <div className="flex-1 text-center lg:text-left space-y-4 md:space-y-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif text-gray-900 leading-tight">
             {personalInfo.name}
           </h1>
           
-          <div className="space-y-4 text-gray-600 text-lg leading-relaxed max-w-2xl">
+          <div className="space-y-3 md:space-y-4 text-gray-600 text-base md:text-lg leading-relaxed max-w-2xl">
             <p>
               I'm a <span className="font-medium text-red-700">{displayText}</span>
               <span className="animate-pulse ml-0.5 text-red-700">|</span>
             </p>
-            <p className="font-light">
+            <p className="font-light text-sm md:text-base">
               Professional Laravel Backend Developer with 3+ years of experience building secure, scalable applications and APIs. 
               I specialize in performance tuning, codebase modernization, server migration, and seamless third-party integrations.
             </p>

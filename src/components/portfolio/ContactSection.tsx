@@ -18,6 +18,7 @@ function ContactForm() {
       setServerError(null);
       setSuccessMessage(null);
       try {
+        // @ts-expect-error - TanStack Start server function typing
         await submitContactForm({ data: value });
         setSuccessMessage("Message sent successfully! I'll get back to you soon.");
         formApi.reset();
@@ -64,7 +65,7 @@ function ContactForm() {
           }}
           children={(field) => (
             <div>
-              <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor={field.name} className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                 Name
               </label>
               <input
@@ -101,7 +102,7 @@ function ContactForm() {
           }}
           children={(field) => (
             <div className="pt-4">
-              <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor={field.name} className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                 Email
               </label>
               <input
@@ -138,7 +139,7 @@ function ContactForm() {
           }}
           children={(field) => (
             <div className="pt-4">
-              <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor={field.name} className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
                 Message
               </label>
               <textarea
@@ -209,47 +210,47 @@ export function ContactSection() {
     <section id="contact" className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30">
       <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
         {/* Left Side: Info & Socials */}
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           <div>
-            <h2 className="text-4xl font-bold font-serif text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-3 md:mb-4">
               Get In Touch
             </h2>
-            <p className="text-xl text-gray-500 leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed">
               Have a project in mind or just want to explore potential collaborations? 
-              <br />
+              <br className="hidden sm:inline" />
               I'm all ears!
             </p>
           </div>
 
-          <div className="space-y-6">
-             <div className="p-6 bg-red-50/50 rounded-2xl border border-red-100/50">
-                <h3 className="font-bold text-red-800 mb-4">Connect With Me</h3>
-                <div className="grid grid-cols-2 gap-3">
+          <div className="space-y-4 md:space-y-6">
+             <div className="p-4 md:p-6 bg-red-50/50 rounded-2xl border border-red-100/50">
+                <h3 className="font-bold text-base md:text-lg text-red-800 mb-3 md:mb-4">Connect With Me</h3>
+                <div className="grid grid-cols-2 gap-2 md:gap-3">
                   {socialLinks.map((link) => (
                     <a
                       key={link.name}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-red-100/50 hover:border-red-200 hover:shadow-md hover:bg-red-50/50 transition-all group"
+                      className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-xl border border-red-100/50 hover:border-red-200 hover:shadow-md hover:bg-red-50/50 transition-all group"
                     >
                       <div className="text-red-500 group-hover:text-red-700 transition-colors">
                         {iconMap[link.icon]}
                       </div>
-                      <span className="text-gray-700 group-hover:text-red-800 font-medium text-sm transition-colors">{link.name}</span>
+                      <span className="text-gray-700 group-hover:text-red-800 font-medium text-xs md:text-sm transition-colors">{link.name}</span>
                     </a>
                   ))}
                 </div>
              </div>
 
-             <div className="pl-2 space-y-2 text-gray-600">
-               <p className="flex items-center gap-3">
-                 <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">📍</span>
+             <div className="pl-2 space-y-2 text-sm md:text-base text-gray-600">
+               <p className="flex items-center gap-2 md:gap-3">
+                 <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs md:text-base shrink-0">📍</span>
                  {personalInfo.location}
                </p>
-               <p className="flex items-center gap-3">
-                 <span className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">📧</span>
-                 <a href={`mailto:${personalInfo.email}`} className="hover:text-black hover:underline underline-offset-4 transition-all">
+               <p className="flex items-center gap-2 md:gap-3">
+                 <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs md:text-base shrink-0">📧</span>
+                 <a href={`mailto:${personalInfo.email}`} className="hover:text-black hover:underline underline-offset-4 transition-all break-all">
                    {personalInfo.email}
                  </a>
                </p>
@@ -258,9 +259,9 @@ export function ContactSection() {
         </div>
 
         {/* Right Side: Form */}
-        <div className="bg-red-50/30 rounded-[2rem] p-8 border border-red-100/50">
-           <div className="mb-6 flex items-center justify-between">
-             <h3 className="font-bold text-xl text-gray-900">Send a Message</h3>
+        <div className="bg-red-50/30 rounded-[2rem] p-6 md:p-8 border border-red-100/50">
+           <div className="mb-4 md:mb-6 flex items-center justify-between">
+             <h3 className="font-bold text-lg md:text-xl text-gray-900">Send a Message</h3>
              <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" title="Online"></div>
            </div>
            <ContactForm />

@@ -9,14 +9,14 @@ const contactSchema = z.object({
 })
 
 export const submitContactForm = createServerFn({ method: "POST" })
-  .handler(async ({ data }) => {
+  .handler(async ({ data }: { data: unknown }) => {
     // Validate input data
     let validatedData
     try {
       validatedData = contactSchema.parse(data)
     } catch (error) {
       if (error instanceof z.ZodError) {
-        throw new Error(error.errors.map(e => e.message).join(', '))
+        throw new Error(error.issues.map((issue) => issue.message).join(', '))
       }
       throw error
     }

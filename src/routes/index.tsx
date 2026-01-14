@@ -16,7 +16,7 @@ function Portfolio() {
   return (
     <main className="min-h-screen bg-gray-50 scroll-smooth">
       <Header />
-      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 space-y-6 md:space-y-8">
         <HeroSection />
         <AboutSection />
         <SkillsSection />
