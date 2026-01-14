@@ -1,348 +1,166 @@
-Welcome to your new TanStack app! 
+# Portfolio Website
 
-# Getting Started
+A modern, responsive portfolio website built with TanStack Start, React, and Tailwind CSS. Features a clean design system, SEO optimization, and a contact form with server-side email handling.
 
-To run this application:
+## Tech Stack
 
-```bash
-npm install
-npm run dev
+- **Framework:** TanStack Start (React with SSR)
+- **UI Library:** React 19
+- **Styling:** Tailwind CSS 4
+- **Components:** shadcn/ui (New York style)
+- **Icons:** Lucide React
+- **Build Tool:** Vite
+- **Language:** TypeScript
+- **Linting/Formatting:** Biome
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── portfolio/          # Portfolio-specific components
+│   │   ├── Header.tsx      # Navigation header
+│   │   ├── HeroSection.tsx # Hero/intro section
+│   │   ├── AboutSection.tsx # About me section
+│   │   ├── SkillsSection.tsx # Skills display
+│   │   ├── ExperienceSection.tsx # Work experience
+│   │   ├── ProjectsSection.tsx # Projects showcase
+│   │   ├── EducationSection.tsx # Education history
+│   │   ├── ContactSection.tsx # Contact form
+│   │   └── index.ts        # Component exports
+│   └── ui/                 # shadcn/ui components
+│       ├── button.tsx
+│       ├── input.tsx
+│       ├── textarea.tsx
+│       └── ...
+├── data/
+│   └── portfolioData.ts    # ⭐ ALL PORTFOLIO DATA (update here)
+├── routes/
+│   ├── __root.tsx          # Root layout, SEO, structured data
+│   └── index.tsx           # Main portfolio page
+├── server/
+│   └── contact.ts          # Contact form API handler
+└── styles.css              # Global styles, Tailwind imports
 ```
 
-# Building For Production
+## Where to Update Data
 
-To build this application for production:
+**All portfolio content is centralized in:** `src/data/portfolioData.ts`
 
+Update the following exports:
+- `personalInfo` - Name, title, bio, contact details, resume URL
+- `socialLinks` - Social media profiles
+- `skills` - Skills organized by category
+- `experience` - Work experience entries
+- `projects` - Project portfolio items
+- `education` - Educational background
+- `achievements` - Notable achievements
+- `languages` - Languages spoken
+- `interests` - Personal interests
+- `navLinks` - Navigation menu items
+
+## Design System
+
+### Color Palette
+- **Primary:** Red theme (`red-700`, `red-800`) with subtle gradients
+- **Background:** Gray-50 base with red-50/15 accents
+- **Text:** Gray-900 for headings, Gray-600 for body text
+- **Borders:** Red-100/30 for subtle section dividers
+
+### Typography
+- **Headings:** Playfair Display (serif) - bold, elegant
+- **Body:** Inter (sans-serif) - clean, readable
+- **Font Loading:** Asynchronously via script in `__root.tsx` for performance
+
+### Components
+- **shadcn/ui Style:** New York variant
+- **Base Color:** Zinc
+- **CSS Variables:** Enabled for theming
+- **Component Location:** `src/components/ui/`
+
+### Styling Patterns
+- Rounded corners: `rounded-[2rem]` for cards
+- Gradient backgrounds: `bg-gradient-to-br from-white via-red-50/15 to-white`
+- Hover effects: Smooth transitions with `hover:shadow-xl` and `hover:-translate-y-1`
+- Responsive spacing: `p-4 sm:p-6 md:p-12`
+
+## Key Features
+
+### SEO Optimization
+- Comprehensive meta tags (Open Graph, Twitter Cards)
+- Structured data (JSON-LD) for Person, ProfessionalService, WebSite, and Projects
+- Canonical URLs and robots directives
+- Preconnect/DNS prefetch for external resources
+
+### Contact Form
+- Server-side email handling via `src/server/contact.ts`
+- Uses Nodemailer for email delivery
+- Form validation with TanStack Form
+- Located in `ContactSection.tsx`
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints: `sm:`, `md:`, `lg:`
+- Horizontal scrolling project cards on mobile
+- Adaptive spacing and typography
+
+## Development
+
+### Install Dependencies
+```bash
+npm install
+```
+
+### Run Development Server
+```bash
+npm run dev
+```
+Server runs on `http://localhost:3000`
+
+### Build for Production
 ```bash
 npm run build
 ```
 
-## Testing
-
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
-
+### Preview Production Build
 ```bash
-npm run test
+npm run preview
 ```
 
-## Styling
-
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-
-## Linting & Formatting
-
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
-
-
+### Code Quality
 ```bash
-npm run lint
-npm run format
-npm run check
+npm run format    # Format code
+npm run lint      # Lint code
+npm run check     # Format + lint
 ```
 
+## Adding New shadcn/ui Components
 
-# TanStack Chat Application
-
-Am example chat application built with TanStack Start, TanStack Store, and Claude AI.
-
-## .env Updates
-
-```env
-ANTHROPIC_API_KEY=your_anthropic_api_key
+Use the latest shadcn CLI:
+```bash
+pnpm dlx shadcn@latest add [component-name]
 ```
 
-## ✨ Features
-
-### AI Capabilities
-- 🤖 Powered by Claude 3.5 Sonnet 
-- 📝 Rich markdown formatting with syntax highlighting
-- 🎯 Customizable system prompts for tailored AI behavior
-- 🔄 Real-time message updates and streaming responses (coming soon)
-
-### User Experience
-- 🎨 Modern UI with Tailwind CSS and Lucide icons
-- 🔍 Conversation management and history
-- 🔐 Secure API key management
-- 📋 Markdown rendering with code highlighting
-
-### Technical Features
-- 📦 Centralized state management with TanStack Store
-- 🔌 Extensible architecture for multiple AI providers
-- 🛠️ TypeScript for type safety
-
-## Architecture
-
-### Tech Stack
-- **Frontend Framework**: TanStack Start
-- **Routing**: TanStack Router
-- **State Management**: TanStack Store
-- **Styling**: Tailwind CSS
-- **AI Integration**: Anthropic's Claude API
-
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
+Example:
 ```bash
 pnpm dlx shadcn@latest add button
 ```
 
+## Environment Variables
 
+For contact form functionality, configure email settings in your deployment environment (e.g., Vercel, Netlify).
 
-## Routing
-This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
+## Deployment
 
-### Adding A Route
+The project is configured for deployment on platforms like Vercel. Ensure:
+- Environment variables are set for email functionality
+- Build command: `npm run build`
+- Output directory: `dist/`
 
-To add a new route to your application just add another a new file in the `./src/routes` directory.
+## Customization
 
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you use the `<Outlet />` component.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
-import { Link } from "@tanstack/react-router";
-
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-const peopleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/people",
-  loader: async () => {
-    const response = await fetch("https://swapi.dev/api/people");
-    return response.json() as Promise<{
-      results: {
-        name: string;
-      }[];
-    }>;
-  },
-  component: () => {
-    const data = peopleRoute.useLoaderData();
-    return (
-      <ul>
-        {data.results.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    );
-  },
-});
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-### React-Query
-
-React-Query is an excellent addition or alternative to route loading and integrating it into you application is a breeze.
-
-First add your dependencies:
-
-```bash
-npm install @tanstack/react-query @tanstack/react-query-devtools
-```
-
-Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
-
-```tsx
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-// ...
-
-const queryClient = new QueryClient();
-
-// ...
-
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
-}
-```
-
-You can also add TanStack Query Devtools to the root route (optional).
-
-```tsx
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <ReactQueryDevtools buttonPosition="top-right" />
-      <TanStackRouterDevtools />
-    </>
-  ),
-});
-```
-
-Now you can use `useQuery` to fetch your data.
-
-```tsx
-import { useQuery } from "@tanstack/react-query";
-
-import "./App.css";
-
-function App() {
-  const { data } = useQuery({
-    queryKey: ["people"],
-    queryFn: () =>
-      fetch("https://swapi.dev/api/people")
-        .then((res) => res.json())
-        .then((data) => data.results as { name: string }[]),
-    initialData: [],
-  });
-
-  return (
-    <div>
-      <ul>
-        {data.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
-```
-
-You can find out everything you need to know on how to use React-Query in the [React-Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview).
-
-## State Management
-
-Another common requirement for React applications is state management. There are many options for state management in React. TanStack Store provides a great starting point for your project.
-
-First you need to add TanStack Store as a dependency:
-
-```bash
-npm install @tanstack/store
-```
-
-Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-function App() {
-  const count = useStore(countStore);
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-    </div>
-  );
-}
-
-export default App;
-```
-
-One of the many nice features of TanStack Store is the ability to derive state from other state. That derived state will update when the base state updates.
-
-Let's check this out by doubling the count using derived state.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store, Derived } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-const doubledStore = new Derived({
-  fn: () => countStore.state * 2,
-  deps: [countStore],
-});
-doubledStore.mount();
-
-function App() {
-  const count = useStore(countStore);
-  const doubledCount = useStore(doubledStore);
-
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-      <div>Doubled - {doubledCount}</div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-We use the `Derived` class to create a new store that is derived from another store. The `Derived` class has a `mount` method that will start the derived store updating.
-
-Once we've created the derived store we can use it in the `App` component just like we would any other store using the `useStore` hook.
-
-You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+1. **Update Content:** Edit `src/data/portfolioData.ts`
+2. **Modify SEO:** Update meta tags in `src/routes/__root.tsx`
+3. **Change Colors:** Update Tailwind classes or CSS variables in `src/styles.css`
+4. **Add Sections:** Create new components in `src/components/portfolio/` and import in `src/routes/index.tsx`
+5. **Update Fonts:** Modify Google Fonts link in `__root.tsx` and font-family in `styles.css`
