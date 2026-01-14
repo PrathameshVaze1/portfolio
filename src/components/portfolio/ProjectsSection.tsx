@@ -31,7 +31,7 @@ export function ProjectsSection() {
                  
                  {/* Links */}
                  <div className="flex gap-3">
-                    {project.githubUrl && (
+                    {project.githubUrl && project.githubUrl !== '#' && (
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white text-white hover:text-black transition-all">
                         <Github className="w-5 h-5" />
                       </a>

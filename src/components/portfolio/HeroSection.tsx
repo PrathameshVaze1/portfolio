@@ -43,7 +43,7 @@ export function HeroSection() {
             <img
               src="https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/prathamesh.jpg"
               alt={personalInfo.name}
-              className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover object-top transition-all duration-700"
             />
           </div>
           {/* Simple decoration */}
