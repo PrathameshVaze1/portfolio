@@ -26,7 +26,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-gray-500 hover:text-gray-900 transition-colors text-sm font-medium tracking-wide"
+              className="text-gray-500 hover:text-red-700 transition-colors text-sm font-medium tracking-wide"
             >
               {link.label}
             </a>
@@ -42,7 +42,7 @@ export function Header() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-gray-400 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all"
+                className="p-2 text-gray-400 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all"
               >
                 {iconMap[link.icon]}
               </a>
@@ -53,7 +53,7 @@ export function Header() {
              href={personalInfo.resumeUrl}
              target="_blank"
              rel="noopener noreferrer"
-             className="text-gray-900 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm font-medium transition-colors border border-gray-200"
+             className="text-white bg-red-700 hover:bg-red-800 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-red-600 shadow-sm hover:shadow-md"
            >
              Resume
            </a>
@@ -77,7 +77,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-lg font-medium text-gray-600 hover:text-red-700 transition-colors"
               >
                 {link.label}
               </a>
@@ -87,7 +87,7 @@ export function Header() {
                href={personalInfo.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-lg font-medium text-gray-600 hover:text-gray-900"
+                className="flex items-center gap-2 text-lg font-medium text-gray-600 hover:text-red-700"
               >
                  <FileText className="w-5 h-5" />
                  Resume

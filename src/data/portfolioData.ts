@@ -82,9 +82,18 @@ export const experience = [
 export const projects = [
   {
     id: 1,
+    title: "Banjara Virasat Museum - Ticket Booking and Box office",
+    description: "A ticket booking and box office management system for Banjara Virasat Museum along with slot locking. Also includes VIP Rooms and Conference Room Bookings",
+    image: "https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/nagara-mueseum.png",
+    techStack: ["Laravel", "ReactJS", "MySQL", "EaseBuzz Payment Gateway","Redis"],
+    liveUrl: "https://online.nagaramuseum.com/",
+    githubUrl: "#",
+  },
+  {
+    id: 2,
     title: "UPL",
     description: "A full-featured e-commerce platform built with Laravel and React, featuring payment integration, inventory management, and real-time notifications.",
-    image: null,
+    image: "https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/upl.png",
     techStack: ["Laravel", "Bootstrap", "MySQL", "Server Management","AWS", "Azure"],
     liveUrl: "https://upl-ltd.com",
     githubUrl: "#",

@@ -76,7 +76,7 @@ function ContactForm() {
                 className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
                   field.state.meta.errors.length
                     ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-2 focus:ring-gray-900 focus:border-transparent'
+                    : 'border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400'
                 }`}
                 placeholder="Your name"
               />
@@ -113,7 +113,7 @@ function ContactForm() {
                 className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
                   field.state.meta.errors.length
                     ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-2 focus:ring-gray-900 focus:border-transparent'
+                    : 'border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400'
                 }`}
                 placeholder="your@email.com"
               />
@@ -151,7 +151,7 @@ function ContactForm() {
                 className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all resize-none ${
                   field.state.meta.errors.length
                     ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-gray-200 focus:ring-2 focus:ring-gray-900 focus:border-transparent'
+                    : 'border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400'
                 }`}
                 placeholder="Your message..."
               />
@@ -171,10 +171,10 @@ function ContactForm() {
               <button
                 type="submit"
                 disabled={!canSubmit || isSubmitting}
-                className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-colors shadow-lg ${
+                className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all shadow-lg ${
                   !canSubmit || isSubmitting
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                    : 'bg-gray-900 hover:bg-black text-white hover:shadow-xl'
+                    : 'bg-red-700 hover:bg-red-800 text-white hover:shadow-xl hover:scale-[1.02]'
                 }`}
               >
                 {isSubmitting ? (
@@ -206,7 +206,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-gray-100/50">
+    <section id="contact" className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30">
       <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
         {/* Left Side: Info & Socials */}
         <div className="space-y-8">
@@ -222,8 +222,8 @@ export function ContactSection() {
           </div>
 
           <div className="space-y-6">
-             <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                <h3 className="font-bold text-gray-900 mb-4">Connect With Me</h3>
+             <div className="p-6 bg-red-50/50 rounded-2xl border border-red-100/50">
+                <h3 className="font-bold text-red-800 mb-4">Connect With Me</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {socialLinks.map((link) => (
                     <a
@@ -231,12 +231,12 @@ export function ContactSection() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-black hover:shadow-md transition-all group"
+                      className="flex items-center gap-3 p-3 bg-white rounded-xl border border-red-100/50 hover:border-red-200 hover:shadow-md hover:bg-red-50/50 transition-all group"
                     >
-                      <div className="text-gray-400 group-hover:text-black transition-colors">
+                      <div className="text-red-500 group-hover:text-red-700 transition-colors">
                         {iconMap[link.icon]}
                       </div>
-                      <span className="text-gray-700 font-medium text-sm">{link.name}</span>
+                      <span className="text-gray-700 group-hover:text-red-800 font-medium text-sm transition-colors">{link.name}</span>
                     </a>
                   ))}
                 </div>
@@ -258,10 +258,10 @@ export function ContactSection() {
         </div>
 
         {/* Right Side: Form */}
-        <div className="bg-gray-50 rounded-[2rem] p-8 border border-gray-100">
+        <div className="bg-red-50/30 rounded-[2rem] p-8 border border-red-100/50">
            <div className="mb-6 flex items-center justify-between">
              <h3 className="font-bold text-xl text-gray-900">Send a Message</h3>
-             <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" title="Online"></div>
+             <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" title="Online"></div>
            </div>
            <ContactForm />
         </div>
