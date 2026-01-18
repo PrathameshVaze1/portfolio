@@ -1,30 +1,30 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 import {
-  HeroSection,
-  AboutSection,
-  SkillsSection,
-  ExperienceSection,
-  ProjectsSection,
-  EducationSection,
-  ContactSection,
-  Header,
-} from '@/components/portfolio'
+	HeroSection,
+	AboutSection,
+	SkillsSection,
+	ExperienceSection,
+	ProjectsSection,
+	EducationSection,
+	ContactSection,
+	Header,
+} from "@/components/portfolio";
 
-export const Route = createFileRoute('/')({ component: Portfolio })
+export const Route = createFileRoute("/")({ component: Portfolio });
 
 function Portfolio() {
-  return (
-    <main className="min-h-screen bg-gray-50 scroll-smooth">
-      <Header />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 space-y-6 md:space-y-8">
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <EducationSection />
-        <ContactSection />
-      </div>
-    </main>
-  )
+	return (
+		<main className="min-h-screen bg-gray-50 scroll-smooth">
+			<Header />
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 space-y-6 md:space-y-8">
+				<HeroSection />
+				<AboutSection />
+				<SkillsSection />
+				<ExperienceSection />
+				<ProjectsSection />
+				<EducationSection />
+				<ContactSection />
+			</div>
+		</main>
+	);
 }

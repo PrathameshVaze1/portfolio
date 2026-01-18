@@ -1,277 +1,328 @@
 import { personalInfo, socialLinks } from "@/data/portfolioData";
-import { Github, Linkedin, Twitter, Mail, Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
-import { useForm } from '@tanstack/react-form'
+import {
+	Github,
+	Linkedin,
+	Twitter,
+	Mail,
+	Send,
+	Loader2,
+	CheckCircle,
+	AlertCircle,
+} from "lucide-react";
+import { useForm } from "@tanstack/react-form";
 import { submitContactForm } from "@/server/contact";
 import { useState } from "react";
 
 function ContactForm() {
-  const [serverError, setServerError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+	const [serverError, setServerError] = useState<string | null>(null);
+	const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const form = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-      message: '',
-    },
-    onSubmit: async ({ value, formApi }) => {
-      setServerError(null);
-      setSuccessMessage(null);
-      try {
-        // @ts-expect-error - TanStack Start server function typing
-        await submitContactForm({ data: value });
-        setSuccessMessage("Message sent successfully! I'll get back to you soon.");
-        formApi.reset();
-      } catch (error) {
-        console.error("Submission error:", error);
-        setServerError("Failed to send message. Please try again later.");
-      }
-    },
-  })
+	const form = useForm({
+		defaultValues: {
+			name: "",
+			email: "",
+			message: "",
+		},
+		onSubmit: async ({ value, formApi }) => {
+			setServerError(null);
+			setSuccessMessage(null);
+			try {
+				// @ts-expect-error - TanStack Start server function typing
+				await submitContactForm({ data: value });
+				setSuccessMessage(
+					"Message sent successfully! I'll get back to you soon.",
+				);
+				formApi.reset();
+			} catch (error) {
+				console.error("Submission error:", error);
+				setServerError("Failed to send message. Please try again later.");
+			}
+		},
+	});
 
-  return (
-    <div className="space-y-4">
-      {successMessage && (
-        <div className="p-4 rounded-lg bg-green-50 text-green-700 flex items-center gap-2 text-sm border border-green-200">
-          <CheckCircle className="w-4 h-4 shrink-0" />
-          {successMessage}
-        </div>
-      )}
-      
-      {serverError && (
-        <div className="p-4 rounded-lg bg-red-50 text-red-700 flex items-center gap-2 text-sm border border-red-200">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          {serverError}
-        </div>
-      )}
+	return (
+		<div className="space-y-4">
+			{successMessage && (
+				<div className="p-4 rounded-lg bg-green-50 text-green-700 flex items-center gap-2 text-sm border border-green-200">
+					<CheckCircle className="w-4 h-4 shrink-0" />
+					{successMessage}
+				</div>
+			)}
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          form.handleSubmit()
-        }}
-        className="space-y-4"
-      >
-        <form.Field
-          name="name"
-          validators={{
-            onChange: ({ value }) =>
-              !value
-                ? 'Name is required'
-                : value.length < 2
-                  ? 'Name must be at least 2 characters'
-                  : undefined,
-          }}
-          children={(field) => (
-            <div>
-              <label htmlFor={field.name} className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
-                Name
-              </label>
-              <input
-                id={field.name}
-                name={field.name}
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                onChange={(e) => field.handleChange(e.target.value)}
-                className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
-                  field.state.meta.errors.length
-                    ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400'
-                }`}
-                placeholder="Your name"
-              />
-              {field.state.meta.errors ? (
-                <div role="alert" className="text-red-500 text-xs mt-1 absolute">
-                  {field.state.meta.errors.join(', ')}
-                </div>
-              ) : null}
-            </div>
-          )}
-        />
+			{serverError && (
+				<div className="p-4 rounded-lg bg-red-50 text-red-700 flex items-center gap-2 text-sm border border-red-200">
+					<AlertCircle className="w-4 h-4 shrink-0" />
+					{serverError}
+				</div>
+			)}
 
-        <form.Field
-          name="email"
-          validators={{
-            onChange: ({ value }) =>
-              !value
-                ? 'Email is required'
-                : !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-                  ? 'Invalid email address'
-                  : undefined,
-          }}
-          children={(field) => (
-            <div className="pt-4">
-              <label htmlFor={field.name} className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                id={field.name}
-                name={field.name}
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                onChange={(e) => field.handleChange(e.target.value)}
-                className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
-                  field.state.meta.errors.length
-                    ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400'
-                }`}
-                placeholder="your@email.com"
-              />
-              {field.state.meta.errors ? (
-                <div role="alert" className="text-red-500 text-xs mt-1 absolute">
-                  {field.state.meta.errors.join(', ')}
-                </div>
-              ) : null}
-            </div>
-          )}
-        />
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					form.handleSubmit();
+				}}
+				className="space-y-4"
+			>
+				<form.Field
+					name="name"
+					validators={{
+						onChange: ({ value }) =>
+							!value
+								? "Name is required"
+								: value.length < 2
+									? "Name must be at least 2 characters"
+									: undefined,
+					}}
+					children={(field) => (
+						<div>
+							<label
+								htmlFor={field.name}
+								className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
+							>
+								Name
+							</label>
+							<input
+								id={field.name}
+								name={field.name}
+								value={field.state.value}
+								onBlur={field.handleBlur}
+								onChange={(e) => field.handleChange(e.target.value)}
+								className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
+									field.state.meta.errors.length
+										? "border-red-300 focus:ring-2 focus:ring-red-200"
+										: "border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400"
+								}`}
+								placeholder="Your name"
+							/>
+							{field.state.meta.errors ? (
+								<div
+									role="alert"
+									className="text-red-500 text-xs mt-1 absolute"
+								>
+									{field.state.meta.errors.join(", ")}
+								</div>
+							) : null}
+						</div>
+					)}
+				/>
 
-        <form.Field
-          name="message"
-          validators={{
-            onChange: ({ value }) =>
-              !value
-                ? 'Message is required'
-                : value.length < 10
-                  ? 'Message must be at least 10 characters'
-                  : undefined,
-          }}
-          children={(field) => (
-            <div className="pt-4">
-              <label htmlFor={field.name} className="block text-xs md:text-sm font-medium text-gray-700 mb-1">
-                Message
-              </label>
-              <textarea
-                id={field.name}
-                name={field.name}
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                onChange={(e) => field.handleChange(e.target.value)}
-                rows={4}
-                className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all resize-none ${
-                  field.state.meta.errors.length
-                    ? 'border-red-300 focus:ring-2 focus:ring-red-200'
-                    : 'border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400'
-                }`}
-                placeholder="Your message..."
-              />
-              {field.state.meta.errors ? (
-                <div role="alert" className="text-red-500 text-xs mt-1 absolute">
-                  {field.state.meta.errors.join(', ')}
-                </div>
-              ) : null}
-            </div>
-          )}
-        />
+				<form.Field
+					name="email"
+					validators={{
+						onChange: ({ value }) =>
+							!value
+								? "Email is required"
+								: !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+									? "Invalid email address"
+									: undefined,
+					}}
+					children={(field) => (
+						<div className="pt-4">
+							<label
+								htmlFor={field.name}
+								className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
+							>
+								Email
+							</label>
+							<input
+								id={field.name}
+								name={field.name}
+								value={field.state.value}
+								onBlur={field.handleBlur}
+								onChange={(e) => field.handleChange(e.target.value)}
+								className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
+									field.state.meta.errors.length
+										? "border-red-300 focus:ring-2 focus:ring-red-200"
+										: "border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400"
+								}`}
+								placeholder="your@email.com"
+							/>
+							{field.state.meta.errors ? (
+								<div
+									role="alert"
+									className="text-red-500 text-xs mt-1 absolute"
+								>
+									{field.state.meta.errors.join(", ")}
+								</div>
+							) : null}
+						</div>
+					)}
+				/>
 
-        <div className="pt-4">
-        <form.Subscribe
-            selector={(state) => [state.canSubmit, state.isSubmitting]}
-            children={([canSubmit, isSubmitting]) => (
-              <button
-                type="submit"
-                disabled={!canSubmit || isSubmitting}
-                className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all shadow-lg ${
-                  !canSubmit || isSubmitting
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                    : 'bg-red-700 hover:bg-red-800 text-white hover:shadow-xl hover:scale-[1.02]'
-                }`}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    Send Message
-                  </>
-                )}
-              </button>
-            )}
-          />
-        </div>
-      </form>
-    </div>
-  )
+				<form.Field
+					name="message"
+					validators={{
+						onChange: ({ value }) =>
+							!value
+								? "Message is required"
+								: value.length < 10
+									? "Message must be at least 10 characters"
+									: undefined,
+					}}
+					children={(field) => (
+						<div className="pt-4">
+							<label
+								htmlFor={field.name}
+								className="block text-xs md:text-sm font-medium text-gray-700 mb-1"
+							>
+								Message
+							</label>
+							<textarea
+								id={field.name}
+								name={field.name}
+								value={field.state.value}
+								onBlur={field.handleBlur}
+								onChange={(e) => field.handleChange(e.target.value)}
+								rows={4}
+								className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all resize-none ${
+									field.state.meta.errors.length
+										? "border-red-300 focus:ring-2 focus:ring-red-200"
+										: "border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400"
+								}`}
+								placeholder="Your message..."
+							/>
+							{field.state.meta.errors ? (
+								<div
+									role="alert"
+									className="text-red-500 text-xs mt-1 absolute"
+								>
+									{field.state.meta.errors.join(", ")}
+								</div>
+							) : null}
+						</div>
+					)}
+				/>
+
+				<div className="pt-4">
+					<form.Subscribe
+						selector={(state) => [state.canSubmit, state.isSubmitting]}
+						children={([canSubmit, isSubmitting]) => (
+							<button
+								type="submit"
+								disabled={!canSubmit || isSubmitting}
+								className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all shadow-lg ${
+									!canSubmit || isSubmitting
+										? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
+										: "bg-red-700 hover:bg-red-800 text-white hover:shadow-xl hover:scale-[1.02]"
+								}`}
+							>
+								{isSubmitting ? (
+									<>
+										<Loader2 className="w-4 h-4 animate-spin" />
+										Sending...
+									</>
+								) : (
+									<>
+										<Send className="w-4 h-4" />
+										Send Message
+									</>
+								)}
+							</button>
+						)}
+					/>
+				</div>
+			</form>
+		</div>
+	);
 }
 
 const iconMap: Record<string, React.ReactNode> = {
-  github: <Github className="w-6 h-6" />,
-  linkedin: <Linkedin className="w-6 h-6" />,
-  twitter: <Twitter className="w-6 h-6" />,
-  mail: <Mail className="w-6 h-6" />,
+	github: <Github className="w-6 h-6" />,
+	linkedin: <Linkedin className="w-6 h-6" />,
+	twitter: <Twitter className="w-6 h-6" />,
+	mail: <Mail className="w-6 h-6" />,
 };
 
 export function ContactSection() {
-  return (
-    <section id="contact" className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30">
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
-        {/* Left Side: Info & Socials */}
-        <div className="space-y-6 md:space-y-8">
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-3 md:mb-4">
-              Get In Touch
-            </h2>
-            <p className="text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed">
-              Have a project in mind or just want to explore potential collaborations? 
-              <br className="hidden sm:inline" />
-              I'm all ears!
-            </p>
-          </div>
+	return (
+		<section
+			id="contact"
+			className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30"
+		>
+			<div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+				{/* Left Side: Info & Socials */}
+				<div className="space-y-6 md:space-y-8">
+					<div>
+						<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-3 md:mb-4">
+							Get In Touch
+						</h2>
+						<p className="text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed">
+							Have a project in mind or just want to explore potential
+							collaborations?
+							<br className="hidden sm:inline" />
+							I'm all ears!
+						</p>
+					</div>
 
-          <div className="space-y-4 md:space-y-6">
-             <div className="p-4 md:p-6 bg-red-50/50 rounded-2xl border border-red-100/50">
-                <h3 className="font-bold text-base md:text-lg text-red-800 mb-3 md:mb-4">Connect With Me</h3>
-                <div className="grid grid-cols-2 gap-2 md:gap-3">
-                  {socialLinks.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-xl border border-red-100/50 hover:border-red-200 hover:shadow-md hover:bg-red-50/50 transition-all group"
-                    >
-                      <div className="text-red-500 group-hover:text-red-700 transition-colors">
-                        {iconMap[link.icon]}
-                      </div>
-                      <span className="text-gray-700 group-hover:text-red-800 font-medium text-xs md:text-sm transition-colors">{link.name}</span>
-                    </a>
-                  ))}
-                </div>
-             </div>
+					<div className="space-y-4 md:space-y-6">
+						<div className="p-4 md:p-6 bg-red-50/50 rounded-2xl border border-red-100/50">
+							<h3 className="font-bold text-base md:text-lg text-red-800 mb-3 md:mb-4">
+								Connect With Me
+							</h3>
+							<div className="grid grid-cols-2 gap-2 md:gap-3">
+								{socialLinks.map((link) => (
+									<a
+										key={link.name}
+										href={link.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-xl border border-red-100/50 hover:border-red-200 hover:shadow-md hover:bg-red-50/50 transition-all group"
+									>
+										<div className="text-red-500 group-hover:text-red-700 transition-colors">
+											{iconMap[link.icon]}
+										</div>
+										<span className="text-gray-700 group-hover:text-red-800 font-medium text-xs md:text-sm transition-colors">
+											{link.name}
+										</span>
+									</a>
+								))}
+							</div>
+						</div>
 
-             <div className="pl-2 space-y-2 text-sm md:text-base text-gray-600">
-               <p className="flex items-center gap-2 md:gap-3">
-                 <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs md:text-base shrink-0">📍</span>
-                 {personalInfo.location}
-               </p>
-               <p className="flex items-center gap-2 md:gap-3">
-                 <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs md:text-base shrink-0">📧</span>
-                 <a href={`mailto:${personalInfo.email}`} className="hover:text-black hover:underline underline-offset-4 transition-all break-all">
-                   {personalInfo.email}
-                 </a>
-               </p>
-             </div>
-          </div>
-        </div>
+						<div className="pl-2 space-y-2 text-sm md:text-base text-gray-600">
+							<p className="flex items-center gap-2 md:gap-3">
+								<span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs md:text-base shrink-0">
+									📍
+								</span>
+								{personalInfo.location}
+							</p>
+							<p className="flex items-center gap-2 md:gap-3">
+								<span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gray-100 flex items-center justify-center text-xs md:text-base shrink-0">
+									📧
+								</span>
+								<a
+									href={`mailto:${personalInfo.email}`}
+									className="hover:text-black hover:underline underline-offset-4 transition-all break-all"
+								>
+									{personalInfo.email}
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
 
-        {/* Right Side: Form */}
-        <div className="bg-red-50/30 rounded-[2rem] p-6 md:p-8 border border-red-100/50">
-           <div className="mb-4 md:mb-6 flex items-center justify-between">
-             <h3 className="font-bold text-lg md:text-xl text-gray-900">Send a Message</h3>
-             <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" title="Online"></div>
-           </div>
-           <ContactForm />
-        </div>
-      </div>
-      
-      {/* Minimal Footer */}
-      <div className="mt-20 pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-         <p>© {new Date().getFullYear()} {personalInfo.name}.</p>
-      </div>
-    </section>
-  );
+				{/* Right Side: Form */}
+				<div className="bg-red-50/30 rounded-[2rem] p-6 md:p-8 border border-red-100/50">
+					<div className="mb-4 md:mb-6 flex items-center justify-between">
+						<h3 className="font-bold text-lg md:text-xl text-gray-900">
+							Send a Message
+						</h3>
+						<div
+							className="w-2 h-2 rounded-full bg-red-500 animate-pulse"
+							title="Online"
+						></div>
+					</div>
+					<ContactForm />
+				</div>
+			</div>
+
+			{/* Minimal Footer */}
+			<div className="mt-20 pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+				<p>
+					© {new Date().getFullYear()} {personalInfo.name}.
+				</p>
+			</div>
+		</section>
+	);
 }
