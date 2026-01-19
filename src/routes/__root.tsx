@@ -366,6 +366,26 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 						return null;
 					}
 				})}
+
+				{/* Google Analytics */}
+				{import.meta.env.VITE_GOOGLE_ANALYTICS_ID && (
+					<>
+						<script
+							async
+							src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GOOGLE_ANALYTICS_ID}`}
+						/>
+						<script
+							dangerouslySetInnerHTML={{
+								__html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${import.meta.env.VITE_GOOGLE_ANALYTICS_ID}');
+                `,
+							}}
+						/>
+					</>
+				)}
 			</head>
 			<body>
 				{/* Load Google Fonts asynchronously to avoid blocking render */}
