@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { personalInfo, navLinks, socialLinks } from "@/data/portfolioData";
 import {
-	Github,
-	Linkedin,
-	Twitter,
+	Code,
+	BadgeCheck,
+	AtSign,
 	Mail,
 	Menu,
 	X,
@@ -11,9 +11,9 @@ import {
 } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
-	github: <Github className="w-5 h-5" />,
-	linkedin: <Linkedin className="w-5 h-5" />,
-	twitter: <Twitter className="w-5 h-5" />,
+	github: <Code className="w-5 h-5" />,
+	linkedin: <BadgeCheck className="w-5 h-5" />,
+	twitter: <AtSign className="w-5 h-5" />,
 	mail: <Mail className="w-5 h-5" />,
 };
 

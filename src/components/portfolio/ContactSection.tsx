@@ -1,8 +1,8 @@
 import { personalInfo, socialLinks } from "@/data/portfolioData";
 import {
-	Github,
-	Linkedin,
-	Twitter,
+	Code,
+	BadgeCheck,
+	AtSign,
 	Mail,
 	Send,
 	Loader2,
@@ -228,9 +228,9 @@ function ContactForm() {
 }
 
 const iconMap: Record<string, React.ReactNode> = {
-	github: <Github className="w-6 h-6" />,
-	linkedin: <Linkedin className="w-6 h-6" />,
-	twitter: <Twitter className="w-6 h-6" />,
+	github: <Code className="w-6 h-6" />,
+	linkedin: <BadgeCheck className="w-6 h-6" />,
+	twitter: <AtSign className="w-6 h-6" />,
 	mail: <Mail className="w-6 h-6" />,
 };
 
