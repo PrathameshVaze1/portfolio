@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { personalInfo, navLinks, socialLinks } from "@/data/portfolioData";
 import {
 	Github,
@@ -19,14 +19,36 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const isScrolled = window.scrollY > 0;
+			if (isScrolled !== scrolled) {
+				setScrolled(isScrolled);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [scrolled]);
 
 	return (
-		<nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-4">
+		<header
+			className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+				scrolled
+					? "bg-white/70 backdrop-blur-xl border-b border-white/50 shadow-sm py-3"
+					: "bg-transparent py-5"
+			}`}
+		>
 			<div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 				{/* Logo */}
 				<a
 					href="#hero"
-					className="text-xl sm:text-2xl font-bold font-serif tracking-tight text-gray-900 hover:text-black transition-colors"
+					className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 hover:text-black transition-colors"
 				>
 					{personalInfo.name.split(" ")[0]}
 				</a>
@@ -37,7 +59,7 @@ export function Header() {
 						<a
 							key={link.href}
 							href={link.href}
-							className="text-gray-500 hover:text-red-700 transition-colors text-sm font-medium tracking-wide"
+							className="text-gray-600 hover:text-primary transition-colors text-sm font-medium tracking-wide"
 						>
 							{link.label}
 						</a>
@@ -53,7 +75,7 @@ export function Header() {
 								href={link.url}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="p-2 text-gray-400 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all"
+								className="p-2 text-gray-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
 							>
 								{iconMap[link.icon]}
 							</a>
@@ -64,7 +86,7 @@ export function Header() {
 						href={personalInfo.resumeUrl}
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-white bg-red-700 hover:bg-red-800 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-red-600 shadow-sm hover:shadow-md"
+						className="text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded-xl text-sm font-medium transition-all shadow-sm hover:shadow-md"
 					>
 						Resume
 					</a>
@@ -92,7 +114,7 @@ export function Header() {
 								key={link.href}
 								href={link.href}
 								onClick={() => setMobileMenuOpen(false)}
-								className="text-lg font-medium text-gray-600 hover:text-red-700 transition-colors"
+								className="text-lg font-medium text-gray-600 hover:text-primary transition-colors"
 							>
 								{link.label}
 							</a>
@@ -102,7 +124,7 @@ export function Header() {
 							href={personalInfo.resumeUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center gap-2 text-lg font-medium text-gray-600 hover:text-red-700"
+							className="flex items-center gap-2 text-lg font-medium text-gray-600 hover:text-primary"
 						>
 							<FileText className="w-5 h-5" />
 							Resume
@@ -110,6 +132,6 @@ export function Header() {
 					</div>
 				</div>
 			)}
-		</nav>
+		</header>
 	);
 }

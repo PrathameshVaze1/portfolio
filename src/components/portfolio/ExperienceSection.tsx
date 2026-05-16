@@ -5,22 +5,22 @@ export function ExperienceSection() {
 	return (
 		<section
 			id="experience"
-			className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30"
+			className="bg-white/60 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 shadow-sm border border-white/50"
 		>
-			<h2 className="text-2xl sm:text-3xl font-bold font-serif text-gray-900 mb-6 md:mb-8">
+			<h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-6 md:mb-8">
 				Work Experience
 			</h2>
 
 			<div className="relative space-y-12">
 				{/* Vertical Line */}
-				<div className="absolute left-4 top-4 bottom-4 w-px bg-gradient-to-b from-red-200 via-red-300 to-red-200 hidden md:block"></div>
+				<div className="absolute left-4 top-4 bottom-4 w-px bg-border hidden md:block"></div>
 
 				{[...experience].reverse().map((job) => (
 					<div key={job.id} className="relative md:pl-12 group">
 						{/* Timeline Dot */}
-						<div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-white border-2 border-red-200 flex items-center justify-center z-10 hidden md:flex group-hover:border-red-500 transition-colors shadow-md">
+						<div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-white border-2 border-border flex items-center justify-center z-10 hidden md:flex group-hover:border-primary transition-colors shadow-sm">
 							<div
-								className={`w-2 h-2 rounded-full ${job.current ? "bg-red-500 animate-pulse" : "bg-red-300 group-hover:bg-red-600 transition-colors"}`}
+								className={`w-2 h-2 rounded-full ${job.current ? "bg-primary animate-pulse" : "bg-gray-300 group-hover:bg-primary transition-colors"}`}
 							></div>
 						</div>
 
@@ -30,17 +30,17 @@ export function ExperienceSection() {
 									{job.role}
 								</h3>
 								<div className="flex flex-wrap items-center gap-2 text-gray-600 mt-1">
-									<Briefcase className="w-4 h-4 text-red-600 shrink-0" />
+									<Briefcase className="w-4 h-4 text-primary shrink-0" />
 									<span className="font-medium text-sm md:text-base">
 										{job.company}
 									</span>
-									<span className="hidden sm:inline">•</span>
-									<span className="text-xs md:text-sm bg-red-50/50 px-2 py-0.5 rounded text-red-700 border border-red-100/50">
+									<span className="hidden sm:inline text-gray-400">•</span>
+									<span className="text-xs md:text-sm bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded text-foreground border border-white/50 shadow-sm">
 										{job.type}
 									</span>
 								</div>
 							</div>
-							<div className="text-xs md:text-sm font-medium text-red-700 whitespace-nowrap bg-red-50/50 px-3 py-1 rounded-full w-fit border border-red-100/50">
+							<div className="text-xs md:text-sm font-medium text-primary whitespace-nowrap bg-primary/5 px-3 py-1 rounded-full w-fit border border-primary/10">
 								{job.duration}
 							</div>
 						</div>
@@ -51,7 +51,7 @@ export function ExperienceSection() {
 									key={i}
 									className="text-sm md:text-base text-gray-600 leading-relaxed flex items-start gap-3"
 								>
-									<span className="mt-2 w-1.5 h-1.5 rounded-full bg-red-400 shrink-0"></span>
+									<span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary/40 shrink-0 group-hover:bg-primary transition-colors"></span>
 									{point}
 								</li>
 							))}

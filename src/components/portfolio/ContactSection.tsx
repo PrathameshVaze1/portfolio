@@ -90,8 +90,8 @@ function ContactForm() {
 								onChange={(e) => field.handleChange(e.target.value)}
 								className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
 									field.state.meta.errors.length
-										? "border-red-300 focus:ring-2 focus:ring-red-200"
-										: "border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400"
+										? "border-destructive focus:ring-2 focus:ring-destructive/20"
+										: "border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
 								}`}
 								placeholder="Your name"
 							/>
@@ -133,8 +133,8 @@ function ContactForm() {
 								onChange={(e) => field.handleChange(e.target.value)}
 								className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all ${
 									field.state.meta.errors.length
-										? "border-red-300 focus:ring-2 focus:ring-red-200"
-										: "border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400"
+										? "border-destructive focus:ring-2 focus:ring-destructive/20"
+										: "border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
 								}`}
 								placeholder="your@email.com"
 							/>
@@ -177,8 +177,8 @@ function ContactForm() {
 								rows={4}
 								className={`w-full px-4 py-2.5 bg-white border rounded-lg outline-none transition-all resize-none ${
 									field.state.meta.errors.length
-										? "border-red-300 focus:ring-2 focus:ring-red-200"
-										: "border-red-200 focus:ring-2 focus:ring-red-500 focus:border-red-400"
+										? "border-destructive focus:ring-2 focus:ring-destructive/20"
+										: "border-border focus:ring-2 focus:ring-primary/20 focus:border-primary"
 								}`}
 								placeholder="Your message..."
 							/>
@@ -201,10 +201,10 @@ function ContactForm() {
 							<button
 								type="submit"
 								disabled={!canSubmit || isSubmitting}
-								className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all shadow-lg ${
+								className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all shadow-sm ${
 									!canSubmit || isSubmitting
-										? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
-										: "bg-red-700 hover:bg-red-800 text-white hover:shadow-xl hover:scale-[1.02]"
+										? "bg-secondary text-muted-foreground cursor-not-allowed shadow-none"
+										: "bg-primary hover:bg-primary/90 text-primary-foreground hover:shadow-md"
 								}`}
 							>
 								{isSubmitting ? (
@@ -238,13 +238,13 @@ export function ContactSection() {
 	return (
 		<section
 			id="contact"
-			className="bg-gradient-to-br from-white via-red-50/15 to-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-red-100/30"
+			className="bg-white/60 backdrop-blur-xl rounded-[2rem] p-8 md:p-12 shadow-sm border border-white/50"
 		>
 			<div className="grid md:grid-cols-2 gap-12 lg:gap-24">
 				{/* Left Side: Info & Socials */}
 				<div className="space-y-6 md:space-y-8">
 					<div>
-						<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-serif text-gray-900 mb-3 md:mb-4">
+						<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-3 md:mb-4">
 							Get In Touch
 						</h2>
 						<p className="text-base md:text-lg lg:text-xl text-gray-500 leading-relaxed">
@@ -256,8 +256,8 @@ export function ContactSection() {
 					</div>
 
 					<div className="space-y-4 md:space-y-6">
-						<div className="p-4 md:p-6 bg-red-50/50 rounded-2xl border border-red-100/50">
-							<h3 className="font-bold text-base md:text-lg text-red-800 mb-3 md:mb-4">
+						<div className="p-4 md:p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-white/50 shadow-sm">
+							<h3 className="font-bold text-base md:text-lg text-gray-900 mb-3 md:mb-4">
 								Connect With Me
 							</h3>
 							<div className="grid grid-cols-2 gap-2 md:gap-3">
@@ -267,12 +267,12 @@ export function ContactSection() {
 										href={link.url}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-white rounded-xl border border-red-100/50 hover:border-red-200 hover:shadow-md hover:bg-red-50/50 transition-all group"
+										className="flex items-center gap-2 md:gap-3 p-2 md:p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-white/60 hover:border-primary/50 hover:bg-white hover:shadow-sm transition-all group"
 									>
-										<div className="text-red-500 group-hover:text-red-700 transition-colors">
+										<div className="text-gray-500 group-hover:text-primary transition-colors">
 											{iconMap[link.icon]}
 										</div>
-										<span className="text-gray-700 group-hover:text-red-800 font-medium text-xs md:text-sm transition-colors">
+										<span className="text-gray-700 group-hover:text-gray-900 font-medium text-xs md:text-sm transition-colors">
 											{link.name}
 										</span>
 									</a>
@@ -303,13 +303,13 @@ export function ContactSection() {
 				</div>
 
 				{/* Right Side: Form */}
-				<div className="bg-red-50/30 rounded-[2rem] p-6 md:p-8 border border-red-100/50">
+				<div className="bg-white/80 backdrop-blur-md rounded-[2rem] p-6 md:p-8 border border-white/50 shadow-sm">
 					<div className="mb-4 md:mb-6 flex items-center justify-between">
-						<h3 className="font-bold text-lg md:text-xl text-gray-900">
+						<h3 className="font-bold tracking-tight text-lg md:text-xl text-gray-900">
 							Send a Message
 						</h3>
 						<div
-							className="w-2 h-2 rounded-full bg-red-500 animate-pulse"
+							className="w-2 h-2 rounded-full bg-green-500 animate-pulse"
 							title="Online"
 						></div>
 					</div>

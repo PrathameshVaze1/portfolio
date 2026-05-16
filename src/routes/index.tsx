@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({ component: Portfolio });
 
 function Portfolio() {
 	return (
-		<main className="min-h-screen bg-gray-50 scroll-smooth">
+		<main className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50 via-rose-50 to-amber-50 scroll-smooth">
 			<Header />
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 space-y-6 md:space-y-8">
 				<HeroSection />
