@@ -153,7 +153,8 @@ export const projects = [
 		id: 4,
 		title: "Pharma Now",
 		description: "",
-		image: "https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/pharmanow.png",
+		image:
+			"https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/pharmanow.png",
 		techStack: [
 			"Laravel",
 			"Bootstrap",
@@ -169,7 +170,8 @@ export const projects = [
 		id: 5,
 		title: "Swimming Pool",
 		description: "",
-		image: "https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/swimmingpool.png",
+		image:
+			"https://pub-b90e26930c594e45a2ab4ae2d9976c3b.r2.dev/img/swimmingpool.png",
 		techStack: [
 			"Laravel",
 			"Bootstrap",
